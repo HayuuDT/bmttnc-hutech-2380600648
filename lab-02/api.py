@@ -46,6 +46,8 @@ def vigenere_decrypt():
     decrypted_text = vigenere_cipher.vigenere_decrypt(cipher_text, key)
     return jsonify({'decrypted_text': decrypted_text})
 
+
+from cipher.railfence import RailFenceCipher
 #RAILFENCE CIPHER ALGORITHM
 railfence_cipher = RailFenceCipher()
 
