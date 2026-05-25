@@ -26,7 +26,6 @@ def caesar_decrypt():
     return jsonify({'decrypted_message': decrypted_text})
 
 
-from cipher.vigenere import VigenereCipher
 #VIGENERE CIPHER ALGORITHM
 vigenere_cipher = VigenereCipher()
 
@@ -47,7 +46,6 @@ def vigenere_decrypt():
     return jsonify({'decrypted_text': decrypted_text})
 
 
-from cipher.railfence import RailFenceCipher
 #RAILFENCE CIPHER ALGORITHM
 railfence_cipher = RailFenceCipher()
 
