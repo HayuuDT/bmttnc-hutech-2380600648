@@ -42,6 +42,7 @@ def vigenere_decrypt():
     cipher_text = data['cipher_text']
     key = data['key']
     decrypted_text = vigenere_cipher.vigenere_decrypt(cipher_text, key)
+    return jsonify({'decrypted_text': decrypted_text})
 
 #RAILFENCE CIPHER ALGORITHM
 railfence_cipher = RailFenceCipher()
@@ -89,7 +90,7 @@ def playfair_decrypt():
     playfair_matrix = playfair_cipher.create_playfair_matrix(key)
     decrypted_text = playfair_cipher.playfair_decrypt(cipher_text, playfair_matrix)
     return jsonify({'decrypted_text': decrypted_text})
-
+    
 
 #main function
 if __name__ == "__main__":
