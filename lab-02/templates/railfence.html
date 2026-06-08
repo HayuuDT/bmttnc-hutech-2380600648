@@ -18,8 +18,8 @@
                             <input type="text" class="form-control" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyPlain" placeholder="Input Key (Chữ hoặc Số)" required/>
+                            <label class="form-label">Key (Số hàng rào &ge; 2):</label>
+                            <input type="number" class="form-control" name="inputKeyPlain" min="2" placeholder="Input số hàng rào (Ví dụ: 3)" required/>
                         </div>
                         <button type="submit" class="btn btn-primary">Encrypt</button>
                     </form>
@@ -34,8 +34,8 @@
                             <input type="text" class="form-control" name="inputCipherText" placeholder="Input Cipher Text" required/>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyCipher" placeholder="Input Key (Chữ hoặc Số)" required/>
+                            <label class="form-label">Key (Số hàng rào &ge; 2):</label>
+                            <input type="number" class="form-control" name="inputKeyCipher" min="2" placeholder="Input số hàng rào (Ví dụ: 3)" required/>
                         </div>
                         <button type="submit" class="btn btn-success">Decrypt</button>
                     </form>

@@ -18,8 +18,8 @@
                             <input type="text" class="form-control" name="inputPlainText" placeholder="Input Plain Text" required autofocus/>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyPlain" placeholder="Input Key (Chữ hoặc Số)" required/>
+                            <label class="form-label">Key (Một từ bằng chữ cái):</label>
+                            <input type="text" class="form-control" name="inputKeyPlain" pattern="[A-Za-z]+" title="Khóa Vigenère bắt buộc phải là chuỗi chữ cái viết liền không dấu cách." placeholder="Input Key (Ví dụ: KEYWORD)" required/>
                         </div>
                         <button type="submit" class="btn btn-primary">Encrypt</button>
                     </form>
@@ -34,8 +34,8 @@
                             <input type="text" class="form-control" name="inputCipherText" placeholder="Input Cipher Text" required/>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Key:</label>
-                            <input type="text" class="form-control" name="inputKeyCipher" placeholder="Input Key (Chữ hoặc Số)" required/>
+                            <label class="form-label">Key (Một từ bằng chữ cái):</label>
+                            <input type="text" class="form-control" name="inputKeyCipher" pattern="[A-Za-z]+" title="Khóa Vigenère bắt buộc phải là chuỗi chữ cái viết liền không dấu cách." placeholder="Input Key (Ví dụ: KEYWORD)" required/>
                         </div>
                         <button type="submit" class="btn btn-success">Decrypt</button>
                     </form>
