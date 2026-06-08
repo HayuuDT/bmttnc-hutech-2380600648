@@ -11,12 +11,33 @@ class MyApp(QMainWindow):
         self.ui.btn_encrypt.clicked.connect(self.call_api_encrypt)
         self.ui.btn_decrypt.clicked.connect(self.call_api_decrypt)
 
+    def validate_inputs(self, text, key):
+        """Phương thức ràng buộc dữ liệu đầu vào cho Vigenère"""
+        if not text.strip():
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Văn bản không được để trống!")
+            return False
+            
+        if not key.strip():
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Khóa (Key) không được để trống!")
+            return False
+            
+        if not key.isalpha():
+            QMessageBox.warning(self, "Lỗi nhập liệu", "Khóa của mã hóa Vigenère chỉ được chứa các ký tự chữ cái (A-Z, a-z)!")
+            return False
+            
+        return True
+
     def call_api_encrypt(self):
-        # Cập nhật đường dẫn API thành vigenere
+        plain_text = self.ui.txt_plain_text.toPlainText()
+        key = self.ui.txt_key.text()
+        
+        if not self.validate_inputs(plain_text, key):
+            return
+
         url = "http://127.0.0.1:5000/api/vigenere/encrypt"
         payload = {
-            "plain_text": self.ui.txt_plain_text.toPlainText(),
-            "key": self.ui.txt_key.text() # Key của Vigenère là một chuỗi ký tự
+            "plain_text": plain_text,
+            "key": key 
         }
         try:
             response = requests.post(url, json=payload)
@@ -29,16 +50,21 @@ class MyApp(QMainWindow):
                 msg.setText("Encrypted Vigenère Successfully")
                 msg.exec_()
             else:
-                print(f"Error while calling API: Status code {response.status_code}")
+                QMessageBox.critical(self, "Lỗi Server", f"API trả về mã lỗi: {response.status_code}")
         except requests.exceptions.RequestException as e:
-            print("Error: %s" % e)
+            QMessageBox.critical(self, "Lỗi kết nối", f"Không thể kết nối đến Server: {e}")
 
     def call_api_decrypt(self):
-        # Cập nhật đường dẫn API thành vigenere
+        cipher_text = self.ui.txt_cipher_text.toPlainText()
+        key = self.ui.txt_key.text()
+        
+        if not self.validate_inputs(cipher_text, key):
+            return
+
         url = "http://127.0.0.1:5000/api/vigenere/decrypt"
         payload = {
-            "cipher_text": self.ui.txt_cipher_text.toPlainText(),
-            "key": self.ui.txt_key.text()
+            "cipher_text": cipher_text,
+            "key": key
         }
         try:
             response = requests.post(url, json=payload)
@@ -51,9 +77,9 @@ class MyApp(QMainWindow):
                 msg.setText("Decrypted Vigenère Successfully")
                 msg.exec_()
             else:
-                print(f"Error while calling API: Status code {response.status_code}")
+                QMessageBox.critical(self, "Lỗi Server", f"API trả về mã lỗi: {response.status_code}")
         except requests.exceptions.RequestException as e:
-            print("Error: %s" % e)
+            QMessageBox.critical(self, "Lỗi kết nối", f"Không thể kết nối đến Server: {e}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
